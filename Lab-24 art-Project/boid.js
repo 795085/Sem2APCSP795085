@@ -1,11 +1,13 @@
 class Boid {
-    constructor(x,y,speedX,speedY,id){
+    constructor(x,y,speedX,speedY,id, xLambda, yLambda){
       this.loc= createVector(x,y);
       this.vel= createVector(speedX, speedY);
-      this.acc= createVector(0, -10);
+      this.acc= createVector(0, -5);
 
-      speedX= 50;
-      speedY= 34;
+      speedX= 70;
+      speedY= 40;
+      this.xLambda = xLambda
+  		this.yLambda = yLambda
 
     }
     run(){
@@ -21,11 +23,11 @@ class Boid {
         //rotateZ(180);
     for(var i = 0; i < 50; i++){
       if (this.loc.x > 200){
-        translate(45*HALF_PI);
-        this.acc.sub(0.46/PI);
+        translate(cos(120)*HALF_PI);
+        this.acc.sub(0.6/PI);
       }else{
         this.acc.normalize();
-        this.acc.div(0.1/HALF_PI);
+        this.acc.div(0.1*HALF_PI);
       }
 
       }
@@ -34,15 +36,15 @@ class Boid {
     update(){
       this.vel.add(this.acc);
       this.loc.add(this.vel);
-      this.vel.limit(75);
-      rotate(PI);
+      this.vel.limit(100);
+      rotate(1.5*PI);
 
 
     }
     render(){
 
       //stroke(random(200), random(40), random(0));
-      stroke(235,75,0);
+      stroke(167, 156,5);
       //background(0);
       // fill(this.clr);
       //fill(random(245), random(75), random(0));
@@ -51,33 +53,23 @@ class Boid {
       if(this.loc.y <= this.loc.x){
         stroke(random(100), random(0), random(120));
       }else{
-        shearY(0.6/PI);
-        rotate(0.75/HALF_PI);
+        shearX(1/PI);
+        rotate(sin(60));
         strokeCap(ROUND);
-        stroke(234, 145, 9);
-        line(this.loc.x/ HALF_PI, 23, width/0.1, height/0.1);
+        stroke(79, 56, 150);
+        line(this.loc.x/ 1.5, 23, width/this.yLambda, height/0.1);
       }
 
       if(this.vel.x > 10){
-        stroke(224,67,45);
-        line(this.loc.x/PI, 4, width/0.5, height/0.5);
+        stroke(179,67,196);
+        line(this.loc.x/4, 4, width/0.5, height/0.5);
       }else{
-        stroke(224,34,77);
+        strokeCap(ROUND);
+        stroke(10,234,210);
         line(this.loc.x/4, 4, width/0.7, height/0.7);
-        translate(HALF_PI/5);
-        rotate(130);
+        translate(HALF_PI/6);
+        rotate(180/this.xLambda);
       }
-
-    //new lines
-    if(this.vel.y >= 40){
-      stroke(234,168,20);
-      line(this.loc.x/this.yLambda, 56, width/0.4, height/0.4);
-      rotate(130/PI);
-    }else{
-      stroke(234,168,20);
-      line(65, this.loc.y/HALF_PI, sqrt(56), sqrt(48));
-      shearX(4);
-    }
 
     }
 

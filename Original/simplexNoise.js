@@ -1,3 +1,26 @@
+/*
+ * A fast javascript implementation of simplex noise by Jonas Wagner
+Based on a speed-improved simplex noise algorithm for 2D, 3D and 4D in Java.
+Which is based on example code by Stefan Gustavson (stegu@itn.liu.se).
+With Optimisations by Peter Eastman (peastman@drizzle.stanford.edu).
+Better rank ordering method by Stefan Gustavson in 2012.
+ Copyright (c) 2018 Jonas Wagner
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ */
 (function() {
   'use strict';
 
@@ -19,11 +42,11 @@
       random = Math.random;
     }
     this.p = buildPermutationTable(random);
-    this.perm = new Uint8Array(440);
-    this.permMod12 = new Uint8Array(440);
+    this.perm = new Uint8Array(512);
+    this.permMod12 = new Uint8Array(512);
     for (var i = 0; i < 512; i++) {
       this.perm[i] = this.p[i & 255];
-      this.permMod12[i] = this.perm[i] % 10;
+      this.permMod12[i] = this.perm[i] % 12;
     }
 
   }

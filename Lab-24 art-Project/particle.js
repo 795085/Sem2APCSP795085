@@ -6,7 +6,6 @@ class Particle {
 		this.reset()
 	}
 
-
 	reset() {
 		this.x = random(this.n-1)
 		this.y = random(this.n-1)
@@ -84,8 +83,6 @@ class Particle {
       this.oldX = this.x;
       this.oldY = this.y;
     }
-
-		
 	}
 
 
