@@ -1,5 +1,6 @@
 let dot = [];
 var boids = [];
+var lines = [];
 let minR=40, maxR=600, N=48 ;
 
 function setup() {
@@ -8,6 +9,7 @@ function setup() {
 		let R = map(n, 0, N, minR, maxR);
 		dot[n] = new Dot(R,n);
     loadBoids();
+		loadLines();
 	}
 }
 
@@ -24,6 +26,7 @@ function draw() {
     }
   }
     runBoids();
+		runLines();
 }
 
 //loadBoids function
@@ -34,9 +37,25 @@ function draw() {
    }
  }
 
+
 //runBoids function
  function runBoids(){
    for(var i = 0; i < 50; i++){
      boids[i].run();
    }
+ }
+
+//loadLines function
+ function loadLines(){
+	 for(var i = 0; i < 20; i++){
+		 var loc = createVector(i*width, height);
+		 lines[i] = new Line(random(width), random(height), random(-20,20), random(-20,20));
+	 }
+ }
+
+ //runLines function
+ function runLines(){
+	 for(var i = 0; i < 20; i++){
+		 lines[i].run();
+	 }
  }
