@@ -24,7 +24,7 @@ class Line{
     for(var i = 0; i < 20; i++){
       if(this.loc.x > 90){
         translate(sin(-10)/this.xLambda);
-        rotate(this.loc.x *50);
+        rotate(this.loc.x/50);
       }else{
         rotate(tan(90)/cos(PI));
         translate(cos(48)*this.loc.y);
