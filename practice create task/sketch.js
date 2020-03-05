@@ -11,7 +11,6 @@ function setup() {
 		dot[n] = new Dot(R,n);
     loadBoids();
 		loadLines();
-		loadBalls();
 	}
 }
 
@@ -29,7 +28,6 @@ function draw() {
   }
     runBoids();
 		runLines();
-		runBalls();
 }
 
 
@@ -63,18 +61,3 @@ function draw() {
 		 lines[i].run();
 	 }
  }
-
- //loadBalls function
- function loadBalls(){
-	 for(var i= 0; i < 100; i++){
-	 var loc = createVector(i*width, height);
-		 balls[i]= new Ball(random(width), random(height), random(-20, 20), random(-20,20));
-	 }
- }
-
- //runBalls function
-function runBalls(){
-	for(var i = 0; i < 100; i++){
-		balls[i].run();
-	}
-}
